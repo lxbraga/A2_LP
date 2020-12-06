@@ -26,10 +26,10 @@ def convert_to_float(df):
     return value
 
 def apply_convert(df):
-    cols = ['Value', 'Wage', 'Release_Clause']
+    cols = ["Value", "Wage"]
     for col in cols:
         df.loc[:, col] = df[col].apply(convert_to_float)
     return df
 
 
-df = apply_convert(drop_cols(df))
+#df = apply_convert(drop_cols(df))

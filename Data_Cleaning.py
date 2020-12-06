@@ -12,3 +12,24 @@ def drop_cols(df):
         
     return df
 
+def convert_to_float(df):
+    try:
+        value = float(df[1:-1])
+        suffix = df[-1:]
+
+        if suffix == 'M':
+            value = value * 1000000
+        elif suffix == 'K':
+            value = value * 1000
+    except ValueError:
+        value = 0
+    return value
+
+def apply_convert(df):
+    cols = ['Value', 'Wage', 'Release_Clause']
+    for col in cols:
+        df.loc[:, col] = df[col].apply(convert_to_float)
+    return df
+
+
+df = apply_convert(drop_cols(df))

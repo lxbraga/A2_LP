@@ -23,11 +23,11 @@ driver = "{ODBC Driver 17 for SQL Server}"
 
 def connection():
     conn = pyodbc.connect(f"DRIVER={driver};\
-                          SERVER={server};\
-                          DATABASE={db};\
-                          UID={user};\
-                          PWD={pwd};\
-                          PORT=1433;")
+                      SERVER={server};\
+                      DATABASE={db};\
+                      UID={user};\
+                      PWD={pwd};\
+                      PORT=1433;")
     return conn
 
 def df_creator(table):
@@ -39,3 +39,5 @@ def df_creator(table):
 
 df = df_creator("fifa.fifa_players")
 print(df.describe().T)
+
+print(pyodbc.drivers())

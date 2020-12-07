@@ -25,10 +25,24 @@ def convert_to_float(df):
         value = 0
     return value
 
+def convert_lbs_kg(value):
+    if value[-3:] != "lbs":
+        raise ValueError
+    value = round(float(value[:-3]) * 0.45359237, 0)
+    return value
+
+def convert_ft_meters(value):
+    if value[1] != "\'":
+        raise ValueError
+    ft = round(((int(value[0]) * 12) + int(value[2:])) * 0.0254, 2)
+    return ft
+        
+    
+
 def apply_convert(df):
-    cols = ["Value", "Wage"]
-    for col in cols:
-        df.loc[:, col] = df[col].apply(convert_to_float)
+    df["Values"], df["Wage"] = df["Value"].apply(convert_to_float), df["Wage"].apply(convert_to_float)
+    df["Weight"] = df["Weight"].apply(convert_lbs_kg)
+    df["Height"] = df["Height"].apply(convert_ft_meters)
     return df
 
 

@@ -55,10 +55,10 @@ def apply_convert(df):
     df["Height"] = df["Height"].apply(convert_ft_meters)
     return df
 
-def fetcher(df):
+def fetcher(df = df):
     df = drop_cols(df)
     df = apply_convert(df)
-    df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv")
+    #df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv")
     return df
 
 df = fetcher(df)

@@ -35,7 +35,7 @@ def df_creator(table):
         raise ValueError(f"Por favor, escolha uma das seguintes tabelas:\n {tablenames}")
     query = f"SELECT * FROM {table}"
     df = pd.read_sql(query, connection())
-    df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv")
+    #df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv")
     return df
 
 #df = df_creator("fifa.fifa_players")

@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  7 00:02:10 2020
+from Data_Cleaning import CleanFifa as dc
 
-@author: X
-"""
-from Data_Cleaning import fetcher as dc
-
-df_fifa = dc()
+df_fifa = dc().fetcher()
 

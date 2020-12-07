@@ -17,9 +17,9 @@ def convert_to_float(df):
         value = float(df[1:-1])
         suffix = df[-1:]
 
-        if suffix == 'M':
+        if suffix == "M":
             value = value * 1000000
-        elif suffix == 'K':
+        elif suffix == "K":
             value = value * 1000
     except ValueError:
         value = 0

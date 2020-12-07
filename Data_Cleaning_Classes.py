@@ -1,15 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec  6 03:12:52 2020
+from Database_Connection_Classes import ConnFifa as dff
+from Database_Connection_Classes import ConnCovid as dfc
 
-@author: Lucas Braga
-"""
-from Database_Connection_Classes import ConnFifa as dfc
-#table = "fifa.fifa_players"
-df = dfc().df_creator()
 class CleanFifa:
     def __init__(self):
-        self.df = dfc().df_creator()
+        self.df = dff().df_creator()
 
     def drop_cols(self, df):
         df = df.drop(["Photo","Flag","Club_Logo", "Loaned_From", "Release_Clause", "Joined"],axis=1)
@@ -63,5 +57,20 @@ class CleanFifa:
         #df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv")
         return self.df
 
-#df = CleanFifa.fetcher(df)
-#df = apply_convert(drop_cols(df))
+
+class CleanCovid:
+    def __init__(self):
+        self.df = dfc().df_creator()
+    
+    def drop_cols(self, df):
+        df = df.drop(["AggregationMethod", "Version"],axis=1)    
+        return df
+        
+    def convert(self, df)
+        df["Date"] = pd.to_datetime(covid["Date"])
+        return df
+    
+    def fetcher(self):
+        self.df = self.drop_cols(self.df)
+        self.df = self.convert(self.df)
+        return self.df

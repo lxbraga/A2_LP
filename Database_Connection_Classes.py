@@ -30,7 +30,7 @@ class Connection:
             raise ValueError(f"Por favor, escolha uma das seguintes tabelas:\n {self.tablenames}")
         query = f"SELECT * FROM {table}"
         df = pd.read_sql(query, self.connection())
-        #df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv")
+        #df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv", index = False)
         return df
         
 class ConnFifa(Connection):

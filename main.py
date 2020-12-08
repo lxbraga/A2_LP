@@ -371,17 +371,20 @@ covid.State.value_counts()
 covid.City.value_counts()
 
 # Visualização da variação do tráfego ao longo dos meses de 2020
-fig = plt.Figure()
-fig.set_canvas(plt.gcf().canvas)
+fig = plt.Figure(dpi = 300)
+#fig.set_canvas(plt.gcf().canvas)
+ax1  = plt.plot(121)
 fig20 = sns.lineplot(x=covid['Month'], y=covid['PercentOfBaseline'], hue="Country", data=covid)
-fig.savefig('imagens/vis_covid/trafego_por_mes.png')
-
+plt.tight_layout(pad=0.01)
+plt.show()
+fig.savefig('imagens/covid/trafego_por_mes.png')
 
 # Visualização em boxplot do grau de impacto do covid por país
-fig = plt.Figure()
-fig.set_canvas(plt.gcf().canvas)
+fig = plt.Figure(dpi = 300)
+#fig.set_canvas(plt.gcf().canvas)
+ax1  = plt.plot(121)
 fig21 = sns.boxplot(x=covid['Country'], y=covid['PercentOfBaseline'], palette=["m", "g"], data=covid)
-fig.savefig('imagens/vis_covid/trafego_por_pais.png')
+fig.savefig('imagens/covid/trafego_por_pais.png')
 
 
 # Regressão logística

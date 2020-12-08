@@ -191,6 +191,16 @@ ax = plt.subplot(111)
 fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
 fig.savefig('imagens/FIFA/analise_idade/Peso_idade.png')
 
+## CRIANDO matriz de correlação e gráfico heatmap
+# Avaliando correlação entre atributos
+analise = fifa.filter(['Age','Overall', 'Potential','Wage', 'Agility', 'Finishing', 'Acceleration','Ball control','Free kick accuracy','Jumping', 'Long passing' ])
+# Matriz de correlação
+corr = analise.corr()
+# Plotando matriz de correlação
+fig = plt.figure()
+ax = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values,linewidths=0.25, vmax=1.0, square=True, cmap = 'PuBu', linecolor='black', annot=False)
+fig.savefig('imagens/fifa/aprov_penaltis/tab_correlacao.png')
+
 # Regressão linear-------------------------------------
 # criação de um modelo para prever a relação entre potencial do jogador e sua idade
 x=fifa["Age"] # Variável independente

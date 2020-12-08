@@ -1,1 +1,6 @@
 pyodbc
+seaborn
+sklearn
+matplotlib
+numpy
+pandas

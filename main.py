@@ -68,7 +68,7 @@ fifa_pp = fifa[fifa["Club"].isin(["IF Brommapojkarna", "FC Nordsjælland","Trell
 fig = plt.figure()
 ax = plt.subplot(111)
 fig_errada = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Finishing"], label = "Melhores times - finalizações"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Finishing"], label = "Piores times - finalizações")
-fig.savefig('ErradoPenalti-Finalizacao.png')
+fig.savefig('imagens/aprov_penaltis/ErradoPenalti-Finalizacao.png')
 
 
 
@@ -83,7 +83,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig1 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Finishing"], label = "Melhores times - finalizações"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Finishing"], label = "Piores times - finalizações")
-fig.savefig('Finalizacao.png')
+fig.savefig('imagens/aprov_penaltis/Finalizacao.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -95,7 +95,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig2 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Curve"],label = "Melhores times - curvatura do chute"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Curve"],label = "Piores times - curvatura do chute")
-fig.savefig('Curvatura.png')
+fig.savefig('imagens/aprov_penaltis/Curvatura.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -107,7 +107,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig3 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Strength"],label = "Melhores times - força do chute"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Strength"],label = "Piores times - força do chute")
-fig.savefig('ForcaDoChute.png')
+fig.savefig('imagens/aprov_penaltis/ForcaDoChute.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -119,7 +119,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig4 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Aggression"],label = "Melhores times - agressão do jogador"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Aggression"],label = "Piores times - agressão do jogador")
-fig.savefig('Agressao.png')
+fig.savefig('imagens/aprov_penaltis/Agressao.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -131,42 +131,42 @@ print(SalarioPorIdade)
 SalarioPorIdade["Age"] = range(16,42)
 fig5 = sns.lineplot(x = SalarioPorIdade["Age"] , y =SalarioPorIdade["mean"],label = "Média do salário por Idade", color = "red")
 figura = fig5.get_figure()
-figura.savefig("Salario_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/Salario_idade.png", dpi = 400)
 
 #NOTA GERAL
 RatingPorIdade = fifa.groupby('Age').Overall.agg(['min','max','mean'])
 RatingPorIdade["Age"] = range(16,42)
 fig6 = sns.lineplot(x = RatingPorIdade["Age"] , y =RatingPorIdade["mean"],label = "Média da nota geral por Idade", color = "blue" )
 figura = fig6.get_figure()
-figura.savefig("NotaGeral_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/NotaGeral_idade.png", dpi = 400)
 
 #STAMINA
 StaminaPorIdade = fifa.groupby('Age').Stamina.agg(['min','max','mean'])
 StaminaPorIdade ["Age"] = range(16,42)
 fig7 = sns.lineplot(x = StaminaPorIdade ["Age"] , y =StaminaPorIdade ["mean"],label = "Stamina por Idade", color = "green" )
 figura = fig7.get_figure()
-figura.savefig("Stamina_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/Stamina_idade.png", dpi = 400)
 
 #JUMPING - PULO
 PuloPorIdade = fifa.groupby('Age').Jumping.agg(['min','max','mean'])
 PuloPorIdade["Age"] = range(16,42)
 fig8 = sns.lineplot(x = PuloPorIdade["Age"] , y =PuloPorIdade["mean"],label = "Pulo por Idade", color = "black" )
 figura = fig8.get_figure()
-figura.savefig("Pulo_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/Pulo_idade.png", dpi = 400)
 
 #AGILITY - AGILIDADE
 AgilidadePorIdade = fifa.groupby('Age').Agility.agg(['min','max','mean'])
 AgilidadePorIdade["Age"] = range(16,42)
 fig9 = sns.lineplot(x = AgilidadePorIdade["Age"] , y =AgilidadePorIdade["mean"],label = "Agilidade por Idade", color = "purple" )
 figura = fig9.get_figure()
-figura.savefig("Agilidade_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/Agilidade_idade.png", dpi = 400)
 
 #WEIGHT - PESO
 PesoPorIdade = fifa.groupby('Age').Weight.agg(['min','max','mean'])
 PesoPorIdade["Age"] = range(16,42)
 fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
 figura = fig9.get_figure()
-figura.savefig("Peso_idade.png", dpi = 400)
+figura.savefig("imagens/analise_idade/Peso_idade.png", dpi = 400)
 
 # Regressão linear
 # criação de um modelo para prever a relação entre potencial do jogador e sua idade

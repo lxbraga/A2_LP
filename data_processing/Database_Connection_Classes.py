@@ -5,7 +5,7 @@ class Connection:
         
     def __init__(self):
         '''
-        Função init da classe Coneection
+        Função init da classe Connection
 
         Returns
         -------

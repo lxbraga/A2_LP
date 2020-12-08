@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import warnings
+import geopandas as gpd
 warnings.filterwarnings("ignore")
 
 covid = dfc().fetcher()
@@ -312,3 +313,28 @@ fig.savefig('imagens/fifa/regressoes/regressao_multipla_teste.png')
     # Afinidade entre os dados avaliados
     # Há uma afinidade de 0.35 entre o salário dos jogadores e os demais dados avaliados
 model.score(x_train,y_train)
+
+
+
+## COVID ------------------------------------------
+covid["Lat"] = ""
+covid["Long"] = ""
+for i in range(len(covid["Centroid"])):
+    covid["Centroid"][i] = covid["Centroid"][i][6:-1]
+    covid["Lat"][i] = covid["Centroid"][i].split(" ")[0] 
+    covid["Long"][i] = covid["Centroid"][i].split(" ")[1] 
+
+#Achamos no mapa o lugar dos aeroportos da basex
+gdf = gpd.GeoDataFrame(covid, geometry=gpd.points_from_xy(covid["Lat"],covid["Long"]))
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+ax = world.plot(column='PercentOfBaseline',color='white', edgecolor='black',figsize=(15,9))
+ax.set_title('Aeroportos analisados na tabela - Covid', fontdict= {'fontsize':25})
+ax.set_axis_off()   
+ax.get_figure()
+gdf.plot(ax=ax, color='red')
+plt.savefig("imagens/Covid/mapa .png")
+plt.show()
+
+
+
+

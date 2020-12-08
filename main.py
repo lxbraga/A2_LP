@@ -366,6 +366,25 @@ fig.savefig('imagens/vis_covid/trafego_por_pais.png')
 pais = {'United States of America (the)': 0, 'Canada': 1, 'Australia':2, 'Chile':3}
 covid["Country"] = [pais[linha] for linha in covid["Country"]]
 
+## COVID ------------------------------------------
+covid["Lat"] = ""
+covid["Long"] = "" #Separa a Latitude da Longitude do arquivo original fornecido
+for i in range(len(covid["Centroid"])):
+    covid["Centroid"][i] = covid["Centroid"][i][6:-1]
+    covid["Lat"][i] = covid["Centroid"][i].split(" ")[0] 
+    covid["Long"][i] = covid["Centroid"][i].split(" ")[1] 
+
+#Achamos no mapa o lugar dos aeroportos da basex
+gdf = gpd.GeoDataFrame(covid, geometry=gpd.points_from_xy(covid["Lat"],covid["Long"]))
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+ax = world.plot(column='PercentOfBaseline',color='white', edgecolor='black',figsize=(15,9))
+ax.set_title('Aeroportos analisados na tabela - Covid', fontdict= {'fontsize':25})
+ax.set_axis_off()   
+ax.get_figure()
+gdf.plot(ax=ax, color='red')
+plt.savefig("imagens/Covid/mapa .png")
+plt.show() #Printa cada aeroporto como uma bolinha vermelha no mapa
+
 covid = covid.drop(["Date"], axis=1)
 X = covid["Country"].values.reshape(-1,1)
 y = covid["PercentOfBaseline"].values.reshape(-1,1)

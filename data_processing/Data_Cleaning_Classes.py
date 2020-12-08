@@ -1,5 +1,6 @@
 from data_processing.Database_Connection_Classes import ConnFifa as dff
 from data_processing.Database_Connection_Classes import ConnCovid as dfc
+import pandas as pd
 
 class CleanFifa:
     def __init__(self):
@@ -54,7 +55,7 @@ class CleanFifa:
     def fetcher(self):
         self.df = self.drop_cols(self.df)
         self.df = self.apply_convert(self.df)
-        df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv", index = False)
+        self.df.to_csv(f"CSVs/fifa_limpo.csv", index = False)
         return self.df
 
 
@@ -67,11 +68,11 @@ class CleanCovid:
         return df
         
     def convert(self, df):
-        df["Date"] = pd.to_datetime(covid["Date"])
+        df["Date"] = pd.to_datetime(df["Date"])
         return df
     
     def fetcher(self):
         self.df = self.drop_cols(self.df)
         self.df = self.convert(self.df)
-        df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv", index = False)
+        self.df.to_csv(f"CSVs/covid_limpo.csv", index = False)
         return self.df

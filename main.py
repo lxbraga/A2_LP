@@ -54,6 +54,24 @@ fifa.sort_values(by='ShotPower',ascending = False )
     # Jogadores mais rápidos
 fifa.sort_values(by='SprintSpeed',ascending = False )
 
+    # Visualização salário por idade
+fig = plt.figure()
+ax = plt.subplot(111)
+fig11 = sns.lineplot(x="Wage", y="Age",data=fifa,label="Age", ci= None)
+fig.savefig('imagens/vis_salarios/fig11.png')
+
+    # Visualização salário por overall
+fig = plt.figure()
+ax = plt.subplot(111)
+fig12 = sns.lineplot(x="Wage", y="Overall",data=fifa,label="Overall", ci= None)
+fig.savefig('imagens/vis_salarios/fig12.png')
+
+    # Visualização salário por potential
+fig = plt.figure()
+ax = plt.subplot(111)
+fig13 = sns.lineplot(x="Wage", y="Potential",data=fifa,label="Potential", ci= None)
+fig.savefig('imagens/vis_salarios/fig13.png')
+
 #PRIMEIRA ANALISE DO FIFA
 ## Ordenando os valores e agroupando eles
 # Agrupamos por time e ordenamos em ordem decrescente para descobrirmos os times no topo e no final em relação ao aproveitamento de pênaltis.#
@@ -193,16 +211,22 @@ y_pred= model.predict(x_test)
 plt.scatter(x_train,y_train,color="red")
 plt.xlabel("Age of Player")
 plt.ylabel("Potential of Player")
-plt.plot(x_train, model.predict(x_train),color="blue") 
-plt.show()
+fig = plt.Figure()
+fig.set_canvas(plt.gcf().canvas)
+ax = plt.subplot(111)
+fig14 = plt.plot(x_train, model.predict(x_train),color="blue")
+fig.savefig('imagens/regressoes/regressao_linear1_treino.png')
 
     # Visualizando dataset de teste
     # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
 plt.scatter(x_test,y_test,color="red")
 plt.xlabel("Age of Player")
 plt.ylabel("Potential of Player")
-plt.plot(x_train, model.predict(x_train),color="blue")
-plt.show()
+fig = plt.Figure()
+fig.set_canvas(plt.gcf().canvas)
+ax = plt.subplot(111)
+fig15 = plt.plot(x_train, model.predict(x_train),color="blue")
+fig.savefig('imagens/regressoes/regressao_linear1_teste.png')
 
     # Encontrando interseção da linha de regressão
 model.intercept_
@@ -237,16 +261,22 @@ y_pred= model.predict(x_test)
 plt.scatter(x_train,y_train,color="red")
 plt.xlabel("Wage")
 plt.ylabel("Potential of Player")
-plt.plot(x_train, model.predict(x_train),color="blue") 
-plt.show()
+fig = plt.Figure()
+fig.set_canvas(plt.gcf().canvas)
+ax = plt.subplot(111)
+fig16 = plt.plot(x_train, model.predict(x_train),color="blue")
+fig.savefig('imagens/regressoes/regressao_linear2_treino.png')
 
     # Visualizando dataset de teste
     # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
 plt.scatter(x_test,y_test,color="red")
 plt.xlabel("Wage")
 plt.ylabel("Potential of Player")
-plt.plot(x_train, model.predict(x_train),color="blue")
-plt.show()
+fig = plt.Figure()
+fig.set_canvas(plt.gcf().canvas)
+ax = plt.subplot(111)
+fig17 = plt.plot(x_train, model.predict(x_train),color="blue")
+fig.savefig('imagens/regressoes/regressao_linear2_teste.png')
 
     # Encontrando interseção da linha de regressão
 model.intercept_
@@ -264,16 +294,6 @@ print(mse)
 x=fifa[["Age","Overall","Potential"]]
 y=fifa["Wage"]
 
-    # Visualização salário por idade
-sns.lineplot(x="Wage", y="Age",data=fifa,label="Age", ci= None)
-print("\n###################################################\n")
-    # Visualização salário por overall
-sns.lineplot(x="Wage", y="Overall",data=fifa,label="Overall", ci= None)
-print("\n###################################################\n")
-    # Visualização salário por potential
-sns.lineplot(x="Wage", y="Potential",data=fifa,label="Potential", ci= None)
-print("\n###################################################\n")
-
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
 model = LinearRegression()
 model.fit(x_train,y_train)
@@ -281,10 +301,11 @@ model.predict(x_test)
 y_pred= model.predict(x_test)
 
     # Visualizando valores atuais e previstos de salário por jogador
-plt.scatter(y_test,y_pred)
-plt.xlabel("Actual Wage")
-plt.ylabel("Predicted Wage")
-plt.show()
+fig = plt.Figure()
+fig.set_canvas(plt.gcf().canvas)
+ax = plt.subplot(111)
+fig18 = plt.scatter(y_test,y_pred), plt.xlabel("Actual Wage"), plt.ylabel("Predicted Wage")
+fig.savefig('imagens/regressoes/regressao_multipla_teste.png')
 
     # Afinidade entre os dados avaliados
     # Há uma afinidade de 0.35 entre o salário dos jogadores e os demais dados avaliados

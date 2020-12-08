@@ -43,7 +43,8 @@ class Connection:
                           PORT=1433;")
         return self.conn
     
-    def df_creator(self, table):'''
+    def df_creator(self, table):
+        '''
         Cria do dataframe de acordo com a tabela escolhida.
 
         Parameters
@@ -70,7 +71,8 @@ class Connection:
         return df
         
 class ConnFifa(Connection):
-    def __init__(self):'''
+    def __init__(self):
+        '''
         Função init da classe ConnFifa
 
         Returns

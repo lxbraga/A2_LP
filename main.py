@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import warnings
 import geopandas as gpd
+import descartes
 warnings.filterwarnings("ignore")
 
 covid = dfc().fetcher()

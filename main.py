@@ -60,19 +60,19 @@ fifa.sort_values(by='SprintSpeed',ascending = False )
 fig = plt.figure()
 ax = plt.subplot(111)
 fig11 = sns.lineplot(x="Wage", y="Age",data=fifa,label="Age", ci= None)
-fig.savefig('imagens/vis_salarios/fig11.png')
+fig.savefig('imagens/fifa/vis_salarios/fig11.png')
 
     # Visualização salário por overall
 fig = plt.figure()
 ax = plt.subplot(111)
 fig12 = sns.lineplot(x="Wage", y="Overall",data=fifa,label="Overall", ci= None)
-fig.savefig('imagens/vis_salarios/fig12.png')
+fig.savefig('imagens/fifa/vis_salarios/fig12.png')
 
     # Visualização salário por potential
 fig = plt.figure()
 ax = plt.subplot(111)
 fig13 = sns.lineplot(x="Wage", y="Potential",data=fifa,label="Potential", ci= None)
-fig.savefig('imagens/vis_salarios/fig13.png')
+fig.savefig('imagens/fifa/vis_salarios/fig13.png')
 
 #PRIMEIRA ANALISE DO FIFA
 ## Ordenando os valores e agroupando eles
@@ -87,7 +87,7 @@ fifa_pp = fifa[fifa["Club"].isin(["IF Brommapojkarna", "FC Nordsjælland","Trell
 fig = plt.figure()
 ax = plt.subplot(111)
 fig_errada = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Finishing"], label = "Melhores times - finalizações"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Finishing"], label = "Piores times - finalizações")
-fig.savefig('imagens/aprov_penaltis/ErradoPenalti-Finalizacao.png')
+fig.savefig('imagens/fifa/aprov_penaltis/ErradoPenalti-Finalizacao.png')
 
 
 
@@ -102,7 +102,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig1 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Finishing"], label = "Melhores times - finalizações"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Finishing"], label = "Piores times - finalizações")
-fig.savefig('imagens/aprov_penaltis/Finalizacao.png')
+fig.savefig('imagens/fifa/aprov_penaltis/Finalizacao.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -114,7 +114,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig2 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Curve"],label = "Melhores times - curvatura do chute"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Curve"],label = "Piores times - curvatura do chute")
-fig.savefig('imagens/aprov_penaltis/Curvatura.png')
+fig.savefig('imagens/fifa/aprov_penaltis/Curvatura.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -126,7 +126,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig3 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Strength"],label = "Melhores times - força do chute"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Strength"],label = "Piores times - força do chute")
-fig.savefig('imagens/aprov_penaltis/ForcaDoChute.png')
+fig.savefig('imagens/fifa/aprov_penaltis/ForcaDoChute.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -138,7 +138,7 @@ fifa_pp["ID"] = range(len(fifa_pp["Name"]))
 fig = plt.figure()
 ax = plt.subplot(111)
 fig4 = sns.lineplot(x = fifa_mp["ID"], y =fifa_mp["Aggression"],label = "Melhores times - agressão do jogador"), sns.lineplot(x = fifa_pp["ID"], y =fifa_pp["Aggression"],label = "Piores times - agressão do jogador")
-fig.savefig('imagens/aprov_penaltis/Agressao.png')
+fig.savefig('imagens/fifa/aprov_penaltis/Agressao.png')
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
@@ -151,7 +151,7 @@ SalarioPorIdade["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig5 = sns.lineplot(x = SalarioPorIdade["Age"] , y =SalarioPorIdade["mean"],label = "Média do salário por Idade", color = "red")
-fig.savefig('imagens/analise_idade/Salario_idade.png')
+fig.savefig('imagens/fifa/analise_idade/Salario_idade.png')
 
 #NOTA GERAL
 RatingPorIdade = fifa.groupby('Age').Overall.agg(['min','max','mean'])
@@ -159,7 +159,7 @@ RatingPorIdade["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig6 = sns.lineplot(x = RatingPorIdade["Age"] , y =RatingPorIdade["mean"],label = "Média da nota geral por Idade", color = "blue" )
-fig.savefig('imagens/analise_idade/NotaGeral_idade.png')
+fig.savefig('imagens/fifa/analise_idade/NotaGeral_idade.png')
 
 #STAMINA
 StaminaPorIdade = fifa.groupby('Age').Stamina.agg(['min','max','mean'])
@@ -167,7 +167,7 @@ StaminaPorIdade ["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig7 = sns.lineplot(x = StaminaPorIdade ["Age"] , y =StaminaPorIdade ["mean"],label = "Stamina por Idade", color = "green" )
-fig.savefig('imagens/analise_idade/Stamina_idade.png')
+fig.savefig('imagens/fifa/analise_idade/Stamina_idade.png')
 
 #JUMPING - PULO
 PuloPorIdade = fifa.groupby('Age').Jumping.agg(['min','max','mean'])
@@ -175,7 +175,7 @@ PuloPorIdade["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig8 = sns.lineplot(x = PuloPorIdade["Age"] , y =PuloPorIdade["mean"],label = "Pulo por Idade", color = "black" )
-fig.savefig('imagens/analise_idade/Pulo_idade.png')
+fig.savefig('imagens/fifa/analise_idade/Pulo_idade.png')
 
 #AGILITY - AGILIDADE
 AgilidadePorIdade = fifa.groupby('Age').Agility.agg(['min','max','mean'])
@@ -183,7 +183,7 @@ AgilidadePorIdade["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig9 = sns.lineplot(x = AgilidadePorIdade["Age"] , y =AgilidadePorIdade["mean"],label = "Agilidade por Idade", color = "purple" )
-fig.savefig('imagens/analise_idade/Agilidade_idade.png')
+fig.savefig('imagens/fifa/analise_idade/Agilidade_idade.png')
 
 #WEIGHT - PESO
 PesoPorIdade = fifa.groupby('Age').Weight.agg(['min','max','mean'])
@@ -191,7 +191,7 @@ PesoPorIdade["Age"] = range(16,42)
 fig = plt.figure()
 ax = plt.subplot(111)
 fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
-fig.savefig('imagens/analise_idade/Peso_idade.png')
+fig.savefig('imagens/fifa/analise_idade/Peso_idade.png')
 
 # Regressão linear-------------------------------------
 # criação de um modelo para prever a relação entre potencial do jogador e sua idade
@@ -217,7 +217,7 @@ fig = plt.Figure()
 fig.set_canvas(plt.gcf().canvas)
 ax = plt.subplot(111)
 fig14 = plt.plot(x_train, model.predict(x_train),color="blue")
-fig.savefig('imagens/regressoes/regressao_linear1_treino.png')
+fig.savefig('imagens/fifa/regressoes/regressao_linear1_treino.png')
 
     # Visualizando dataset de teste
     # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
@@ -228,7 +228,7 @@ fig = plt.Figure()
 fig.set_canvas(plt.gcf().canvas)
 ax = plt.subplot(111)
 fig15 = plt.plot(x_train, model.predict(x_train),color="blue")
-fig.savefig('imagens/regressoes/regressao_linear1_teste.png')
+fig.savefig('imagens/fifa/regressoes/regressao_linear1_teste.png')
 
     # Encontrando interseção da linha de regressão
 model.intercept_
@@ -267,7 +267,7 @@ fig = plt.Figure()
 fig.set_canvas(plt.gcf().canvas)
 ax = plt.subplot(111)
 fig16 = plt.plot(x_train, model.predict(x_train),color="blue")
-fig.savefig('imagens/regressoes/regressao_linear2_treino.png')
+fig.savefig('imagens/fifa/regressoes/regressao_linear2_treino.png')
 
     # Visualizando dataset de teste
     # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
@@ -278,7 +278,7 @@ fig = plt.Figure()
 fig.set_canvas(plt.gcf().canvas)
 ax = plt.subplot(111)
 fig17 = plt.plot(x_train, model.predict(x_train),color="blue")
-fig.savefig('imagens/regressoes/regressao_linear2_teste.png')
+fig.savefig('imagens/fifa/regressoes/regressao_linear2_teste.png')
 
     # Encontrando interseção da linha de regressão
 model.intercept_
@@ -307,7 +307,7 @@ fig = plt.Figure()
 fig.set_canvas(plt.gcf().canvas)
 ax = plt.subplot(111)
 fig18 = plt.scatter(y_test,y_pred), plt.xlabel("Actual Wage"), plt.ylabel("Predicted Wage")
-fig.savefig('imagens/regressoes/regressao_multipla_teste.png')
+fig.savefig('imagens/fifa/regressoes/regressao_multipla_teste.png')
 
     # Afinidade entre os dados avaliados
     # Há uma afinidade de 0.35 entre o salário dos jogadores e os demais dados avaliados

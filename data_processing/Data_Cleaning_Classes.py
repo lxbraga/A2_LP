@@ -1,5 +1,5 @@
-from Database_Connection_Classes import ConnFifa as dff
-from Database_Connection_Classes import ConnCovid as dfc
+from data_processing.Database_Connection_Classes import ConnFifa as dff
+from data_processing.Database_Connection_Classes import ConnCovid as dfc
 
 class CleanFifa:
     def __init__(self):
@@ -54,7 +54,7 @@ class CleanFifa:
     def fetcher(self):
         self.df = self.drop_cols(self.df)
         self.df = self.apply_convert(self.df)
-        #df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv")
+        df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv", index = False)
         return self.df
 
 
@@ -73,4 +73,5 @@ class CleanCovid:
     def fetcher(self):
         self.df = self.drop_cols(self.df)
         self.df = self.convert(self.df)
+        df.to_csv(f"CSVs/{table.split('.')[0]}_limpo.csv", index = False)
         return self.df

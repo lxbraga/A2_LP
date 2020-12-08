@@ -1,4 +1,5 @@
-from Data_Cleaning import CleanFifa as dc
+from data_processing.Data_Cleaning_Classes import CleanFifa as dff
+from data_processing.Data_Cleaning_Classes import CleanCovid as dfc
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn import datasets, linear_model, metrics, model_selection
@@ -8,8 +9,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-
-fifa = dc().fetcher()
+covid = dfc().fetcher()
+fifa = dff().fetcher()
 
 ## Ordenando os valores e agroupando eles
 # Agrupamos por time e ordenamos em ordem decrescente para descobrirmos os times no topo e no final em relação ao aproveitamento de pênaltis.#

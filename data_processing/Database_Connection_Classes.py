@@ -30,7 +30,7 @@ class Connection:
             raise ValueError(f"Por favor, escolha uma das seguintes tabelas:\n {self.tablenames}")
         query = f"SELECT * FROM {table}"
         df = pd.read_sql(query, self.connection())
-        #df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv", index = False)
+        df.to_csv(f"CSVs/{table.split('.')[0]}_sujo.csv", index = False)
         return df
         
 class ConnFifa(Connection):
@@ -51,8 +51,3 @@ class ConnCovid(Connection):
     def df_creator(self):
         table = "covid.covid_impact_on_airport_traffic"
         return Connection().df_creator(table)   
-
-#df = ConnFifa().df_creator()
-#print(df.describe().T)
-
-#print(pyodbc.drivers())

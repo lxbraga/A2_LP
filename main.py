@@ -12,6 +12,49 @@ import seaborn as sns
 covid = dfc().fetcher()
 fifa = dff().fetcher()
 
+# ANÁLISE EXPLORATÓRIA DOS DADOS DO FIFA
+    # Quantidade de paí­ses presentes na fifa
+fifa['Nationality'].nunique()
+
+    # Quantidade de jogadores por paí­s
+fifa['Nationality'].value_counts()
+
+    # Média de idades
+fifa['Age'].mean()
+
+    # Quantidade de jogadores por idade
+fifa['Age'].value_counts()
+
+    # Média de idade por clube
+fifa.groupby('Club').Age.mean()
+
+    # Média de salário por jogador
+fifa['Wage'].mean()
+
+    # Média de salário por clube
+fifa.groupby('Club').Wage.mean()
+
+    # Gasto salarial por clube
+fifa.groupby('Club').Wage.sum().sort_values(ascending = False)
+
+    # Overall por idade
+fifa.groupby('Age').Overall.agg(['min','max','mean'])
+
+    # Potencial por idade
+fifa.groupby('Age').Potential.agg(['min','max','mean'])
+
+    # Melhores médias de Overall por clube
+fifa.groupby('Club').Overall.mean().sort_values(ascending = False)
+
+    # Jogadores com mais finalizações
+fifa.sort_values(by='Finishing',ascending = False)
+
+    # Jogadores com maior potência de chute
+fifa.sort_values(by='ShotPower',ascending = False )
+
+    # Jogadores mais rápidos
+fifa.sort_values(by='SprintSpeed',ascending = False )
+
 #PRIMEIRA ANALISE DO FIFA
 ## Ordenando os valores e agroupando eles
 # Agrupamos por time e ordenamos em ordem decrescente para descobrirmos os times no topo e no final em relação ao aproveitamento de pênaltis.#
@@ -116,3 +159,120 @@ PesoPorIdade["Age"] = range(16,42)
 fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
 figura = fig9.get_figure()
 figura.savefig("Peso_idade.png", dpi = 400)
+
+# Regressão linear
+# criação de um modelo para prever a relação entre potencial do jogador e sua idade
+x=fifa["Age"] # Variável independente
+y=fifa["Potential"] # Variável dependente
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+model = LinearRegression()
+x_train=np.array(x_train)
+y_train=np.array(y_train)
+x_train=x_train.reshape(-1,1)
+y_train=y_train.reshape(-1,1)
+model.fit(x_train,y_train)
+x_test=np.array(x_test)
+x_test=x_test.reshape(-1,1)
+y_pred= model.predict(x_test)
+
+    # Visualizando dataset de treino
+    # Onde os dados serão utilizados para refinir o sistema de predição
+plt.scatter(x_train,y_train,color="red")
+plt.xlabel("Age of Player")
+plt.ylabel("Potential of Player")
+plt.plot(x_train, model.predict(x_train),color="blue") 
+plt.show()
+
+    # Visualizando dataset de teste
+    # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
+plt.scatter(x_test,y_test,color="red")
+plt.xlabel("Age of Player")
+plt.ylabel("Potential of Player")
+plt.plot(x_train, model.predict(x_train),color="blue")
+plt.show()
+
+    # Encontrando interseção da linha de regressão
+model.intercept_
+
+    # Encontrando coeficiente da regressão linear
+    # é o grau de afinidade entre as variáveis, definindo se estão muito relacionadas (1) ou não possuem relação (0)
+model.score(x_train,y_train)
+
+    # Encontrando mse (mean squared error)
+mse = metrics.mean_squared_error(y_test,y_pred)
+print(mse)
+
+    ## Podemos notar que não há uma relação entre o potencial do jogador e sua idade (através do R2 - model.score()), o que nos leva a buscar outro dado que se adeque melhor.
+
+    ## Já nesse modelo, podemos notar que há relação positiva entre o potencial do jogador e seu salário (através do R2 - model.score())
+# Regressão linear - prevendo potencial baseado no salário
+x=fifa["Wage"] # Variável independente
+y=fifa["Potential"] # Variável dependente
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+model = LinearRegression()
+x_train=np.array(x_train)
+y_train=np.array(y_train)
+x_train=x_train.reshape(-1,1)
+y_train=y_train.reshape(-1,1)
+model.fit(x_train,y_train)
+x_test=np.array(x_test)
+x_test=x_test.reshape(-1,1)
+y_pred= model.predict(x_test)
+
+    # Visualizando dataset de treino
+    # Onde os dados serão utilizados para refinir o sistema de predição
+plt.scatter(x_train,y_train,color="red")
+plt.xlabel("Wage")
+plt.ylabel("Potential of Player")
+plt.plot(x_train, model.predict(x_train),color="blue") 
+plt.show()
+
+    # Visualizando dataset de teste
+    # Onde os dados serão previstos com base no conjunto de treino, medindo a eficiência de previsão
+plt.scatter(x_test,y_test,color="red")
+plt.xlabel("Wage")
+plt.ylabel("Potential of Player")
+plt.plot(x_train, model.predict(x_train),color="blue")
+plt.show()
+
+    # Encontrando interseção da linha de regressão
+model.intercept_
+
+    # Encontrando coeficiente da regressão linear
+    # é o grau de afinidade entre as variáveis, definindo se estão muito relacionadas (1) ou não possuem relação (0)
+model.score(x_train,y_train)
+
+    # Encontrando mse (mean squared error)
+mse = metrics.mean_squared_error(y_test,y_pred)
+print(mse)    
+
+    ## Foram utilizados dados para definir uma correlação entre o salário dos jogadores e sua idade, pontuação de overall e potencial
+# Regressão múltipla - salário por idade, overall e potencial
+x=fifa[["Age","Overall","Potential"]]
+y=fifa["Wage"]
+
+    # Visualização salário por idade
+sns.lineplot(x="Wage", y="Age",data=fifa,label="Age", ci= None)
+print("\n###################################################\n")
+    # Visualização salário por overall
+sns.lineplot(x="Wage", y="Overall",data=fifa,label="Overall", ci= None)
+print("\n###################################################\n")
+    # Visualização salário por potential
+sns.lineplot(x="Wage", y="Potential",data=fifa,label="Potential", ci= None)
+print("\n###################################################\n")
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+model = LinearRegression()
+model.fit(x_train,y_train)
+model.predict(x_test)
+y_pred= model.predict(x_test)
+
+    # Visualizando valores atuais e previstos de salário por jogador
+plt.scatter(y_test,y_pred)
+plt.xlabel("Actual Wage")
+plt.ylabel("Predicted Wage")
+plt.show()
+
+    # Afinidade entre os dados avaliados
+    # Há uma afinidade de 0.35 entre o salário dos jogadores e os demais dados avaliados
+model.score(x_train,y_train)

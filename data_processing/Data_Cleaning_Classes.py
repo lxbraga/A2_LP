@@ -66,7 +66,7 @@ class CleanCovid:
         df = df.drop(["AggregationMethod", "Version"],axis=1)    
         return df
         
-    def convert(self, df)
+    def convert(self, df):
         df["Date"] = pd.to_datetime(covid["Date"])
         return df
     

@@ -1,0 +1,39 @@
+A2\-L.P package
+===============
+
+Submodules
+----------
+
+A2\-L.P.Data\_Cleaning\_Classes module - A2 - Linguagens de Programação
+--------------------------------------
+
+.. automodule:: A2-L.P.Data_Cleaning_Classes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__, drop_cols, convert_to_float, convert_lbs_kg, convert_ft_meters, remove_plus, apply_convert, fetcher 
+
+A2\-L.P.Database\_Connection\_Classes module - A2 - Linguagens de Programação
+--------------------------------------------
+
+.. automodule:: A2-L.P.Database_Connection_Classes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__, connection, df_creator
+
+A2\-L.P.main module - A2 - Linguagens de Programação
+-------------------
+
+.. automodule:: A2-L.P.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents - A2 - Linguagens de Programação
+---------------
+
+.. automodule:: A2-L.P
+   :members:
+   :undoc-members:
+   :show-inheritance:

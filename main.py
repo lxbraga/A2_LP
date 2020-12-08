@@ -12,6 +12,7 @@ import seaborn as sns
 covid = dfc().fetcher()
 fifa = dff().fetcher()
 
+#PRIMEIRA ANALISE DO FIFA
 ## Ordenando os valores e agroupando eles
 # Agrupamos por time e ordenamos em ordem decrescente para descobrirmos os times no topo e no final em relação ao aproveitamento de pênaltis.#
 fifa_penalties_club = fifa.groupby(["Club"]).mean()
@@ -71,6 +72,47 @@ figura.savefig("Agressao  .png", dpi = 400)
 del fifa_mp["ID"]
 del fifa_pp["ID"]
 
+#SEGUNDA ANÁLISE DO FIFA
+## Analise Geral por IDADE - ["Wage", "Overall", "Stamina", "Jumping", "Agility", "Weight"]
+# SALARIO
+SalarioPorIdade = fifa.groupby('Age').Wage.agg(["min","max","mean"])
+print(SalarioPorIdade)
+SalarioPorIdade["Age"] = range(16,42)
+fig5 = sns.lineplot(x = SalarioPorIdade["Age"] , y =SalarioPorIdade["mean"],label = "Média do salário por Idade", color = "red")
+figura = fig5.get_figure()
+figura.savefig("Salario_idade.png", dpi = 400)
 
+#NOTA GERAL
+RatingPorIdade = fifa.groupby('Age').Overall.agg(['min','max','mean'])
+RatingPorIdade["Age"] = range(16,42)
+fig6 = sns.lineplot(x = RatingPorIdade["Age"] , y =RatingPorIdade["mean"],label = "Média da nota geral por Idade", color = "blue" )
+figura = fig6.get_figure()
+figura.savefig("NotaGeral_idade.png", dpi = 400)
 
+#STAMINA
+StaminaPorIdade = fifa.groupby('Age').Stamina.agg(['min','max','mean'])
+StaminaPorIdade ["Age"] = range(16,42)
+fig7 = sns.lineplot(x = StaminaPorIdade ["Age"] , y =StaminaPorIdade ["mean"],label = "Stamina por Idade", color = "green" )
+figura = fig7.get_figure()
+figura.savefig("Stamina_idade.png", dpi = 400)
 
+#JUMPING - PULO
+PuloPorIdade = fifa.groupby('Age').Jumping.agg(['min','max','mean'])
+PuloPorIdade["Age"] = range(16,42)
+fig8 = sns.lineplot(x = PuloPorIdade["Age"] , y =PuloPorIdade["mean"],label = "Pulo por Idade", color = "black" )
+figura = fig8.get_figure()
+figura.savefig("Pulo_idade.png", dpi = 400)
+
+#AGILITY - AGILIDADE
+AgilidadePorIdade = fifa.groupby('Age').Agility.agg(['min','max','mean'])
+AgilidadePorIdade["Age"] = range(16,42)
+fig9 = sns.lineplot(x = AgilidadePorIdade["Age"] , y =AgilidadePorIdade["mean"],label = "Agilidade por Idade", color = "purple" )
+figura = fig9.get_figure()
+figura.savefig("Agilidade_idade.png", dpi = 400)
+
+#WEIGHT - PESO
+PesoPorIdade = fifa.groupby('Age').Weight.agg(['min','max','mean'])
+PesoPorIdade["Age"] = range(16,42)
+fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
+figura = fig9.get_figure()
+figura.savefig("Peso_idade.png", dpi = 400)

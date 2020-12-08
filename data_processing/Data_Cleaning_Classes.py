@@ -221,6 +221,8 @@ class CleanCovid:
 
         '''
         df["Date"] = pd.to_datetime(df["Date"])
+        df['Day'] = pd.DatetimeIndex(df['Date']).dayofyear
+        df['Month'] = pd.DatetimeIndex(df['Date']).month     
         return df
     
     def fetcher(self):

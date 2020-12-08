@@ -4,6 +4,14 @@ import pandas as pd
 class Connection:
         
     def __init__(self):
+        '''
+        Função init da classe Coneection
+
+        Returns
+        -------
+        None.
+
+        '''
         self.tablenames = ["covid.covid_impact_on_airport_traffic",
                            "fifa.fifa_players",
                            "real_state.real_state_values",
@@ -17,6 +25,16 @@ class Connection:
         self.driver = "{ODBC Driver 17 for SQL Server}"
         
     def connection(self):
+        '''
+        Função que fornece as informações necessárias para que haja
+        a conexão com o banco de dados
+
+        Returns
+        -------
+        pipe
+            Retorna a conexão com o banco de dados.
+
+        '''
         self.conn = pyodbc.connect(f"DRIVER={self.driver};\
                           SERVER={self.server};\
                           DATABASE={self.db};\
@@ -25,7 +43,25 @@ class Connection:
                           PORT=1433;")
         return self.conn
     
-    def df_creator(self, table):
+    def df_creator(self, table):'''
+        Cria do dataframe de acordo com a tabela escolhida.
+
+        Parameters
+        ----------
+        table : string
+            Nome dado as tabelas.
+
+        Raises
+        ------
+        ValueError
+            O selecionado não está compreendido dentre os disponíveis.
+
+        Returns
+        -------
+        df : set
+            Dataframe lida .
+
+        '''
         if table not in self.tablenames:
             raise ValueError(f"Por favor, escolha uma das seguintes tabelas:\n {self.tablenames}")
         query = f"SELECT * FROM {table}"
@@ -34,20 +70,93 @@ class Connection:
         return df
         
 class ConnFifa(Connection):
-    def __init__(self):
+    def __init__(self):'''
+        Função init da classe ConnFifa
+
+        Returns
+        -------
+        None.
+
+        '''
         super().__init__()
     def connection(self):
+        '''
+        Função que fornece as informações necessárias para que haja
+        a conexão com o banco de dados
+
+        Returns
+        -------
+        pipe
+            Retorna a conexão com o banco de dados.
+
+        '''
         super().connection()
     def df_creator(self):
+        '''
+        Cria do dataframe de acordo com a tabela escolhida.
+
+        Parameters
+        ----------
+        table : string
+            Nome dado as tabelas.
+
+        Raises
+        ------
+        ValueError
+            O selecionado não está compreendido dentre os disponíveis.
+
+        Returns
+        -------
+        df : set
+            Dataframe lida .
+
+        '''
         table = "fifa.fifa_players"
         return Connection().df_creator(table)        
         
 
 class ConnCovid(Connection):
     def __init__(self):
+        '''
+        Função init da classe ConnCovid
+
+        Returns
+        -------
+        None.
+
+        '''
         super().__init__()
     def connection(self):
+        '''
+        Função que fornece as informações necessárias para que haja
+        a conexão com o banco de dados
+
+        Returns
+        -------
+        pipe
+            Retorna a conexão com o banco de dados.
+
+        '''
         super().connection()
     def df_creator(self):
+        '''
+        Cria do dataframe de acordo com a tabela escolhida.
+
+        Parameters
+        ----------
+        table : string
+            Nome dado as tabelas.
+
+        Raises
+        ------
+        ValueError
+            O selecionado não está compreendido dentre os disponíveis.
+
+        Returns
+        -------
+        df : set
+            Dataframe lida .
+
+        '''
         table = "covid.covid_impact_on_airport_traffic"
         return Connection().df_creator(table)   

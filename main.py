@@ -129,46 +129,52 @@ del fifa_pp["ID"]
 SalarioPorIdade = fifa.groupby('Age').Wage.agg(["min","max","mean"])
 print(SalarioPorIdade)
 SalarioPorIdade["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig5 = sns.lineplot(x = SalarioPorIdade["Age"] , y =SalarioPorIdade["mean"],label = "Média do salário por Idade", color = "red")
-figura = fig5.get_figure()
-figura.savefig("imagens/analise_idade/Salario_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/Salario_idade.png')
 
 #NOTA GERAL
 RatingPorIdade = fifa.groupby('Age').Overall.agg(['min','max','mean'])
 RatingPorIdade["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig6 = sns.lineplot(x = RatingPorIdade["Age"] , y =RatingPorIdade["mean"],label = "Média da nota geral por Idade", color = "blue" )
-figura = fig6.get_figure()
-figura.savefig("imagens/analise_idade/NotaGeral_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/NotaGeral_idade.png')
 
 #STAMINA
 StaminaPorIdade = fifa.groupby('Age').Stamina.agg(['min','max','mean'])
 StaminaPorIdade ["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig7 = sns.lineplot(x = StaminaPorIdade ["Age"] , y =StaminaPorIdade ["mean"],label = "Stamina por Idade", color = "green" )
-figura = fig7.get_figure()
-figura.savefig("imagens/analise_idade/Stamina_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/Stamina_idade.png')
 
 #JUMPING - PULO
 PuloPorIdade = fifa.groupby('Age').Jumping.agg(['min','max','mean'])
 PuloPorIdade["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig8 = sns.lineplot(x = PuloPorIdade["Age"] , y =PuloPorIdade["mean"],label = "Pulo por Idade", color = "black" )
-figura = fig8.get_figure()
-figura.savefig("imagens/analise_idade/Pulo_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/Pulo_idade.png')
 
 #AGILITY - AGILIDADE
 AgilidadePorIdade = fifa.groupby('Age').Agility.agg(['min','max','mean'])
 AgilidadePorIdade["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig9 = sns.lineplot(x = AgilidadePorIdade["Age"] , y =AgilidadePorIdade["mean"],label = "Agilidade por Idade", color = "purple" )
-figura = fig9.get_figure()
-figura.savefig("imagens/analise_idade/Agilidade_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/Agilidade_idade.png')
 
 #WEIGHT - PESO
 PesoPorIdade = fifa.groupby('Age').Weight.agg(['min','max','mean'])
 PesoPorIdade["Age"] = range(16,42)
+fig = plt.figure()
+ax = plt.subplot(111)
 fig10 =sns.lineplot(x = PesoPorIdade["Age"] , y =PesoPorIdade["mean"],label = "Peso por Idade", color = "cyan" )
-figura = fig9.get_figure()
-figura.savefig("imagens/analise_idade/Peso_idade.png", dpi = 400)
+fig.savefig('imagens/analise_idade/Peso_idade.png')
 
-# Regressão linear
+# Regressão linear-------------------------------------
 # criação de um modelo para prever a relação entre potencial do jogador e sua idade
 x=fifa["Age"] # Variável independente
 y=fifa["Potential"] # Variável dependente
